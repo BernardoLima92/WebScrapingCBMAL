@@ -73,7 +73,7 @@ def get_read():
     sem_duplicados = sem_duplicados.drop(columns='index')
     sem_duplicados.to_csv("dataframe_cbmal.csv")
 
-    texto = f'Tamnho atual do arquivo CSV: {len(sem_duplicados)}'
+    texto = f'O Tamnho atual do arquivo CSV: {len(sem_duplicados)}'
 
     return texto
 
