@@ -14,11 +14,12 @@ cbm_url = ['https://cbm.al.gov.br/paginas/ocorrencias/true']
 
 #df = pd.DataFrame(nova_linha, index=[0])
 
-@app.route('/leitura')
+@app.route("/")
 def get_read():
 
     # Criação do DataFrame Pandas que  recebe a base de dados do arquivo CSV.
-    dataframe_cbmal = pd.read_csv("dataframe_cbmal.csv", sep=",", encoding='UTF-8', index_col=0)
+    #dataframe_cbmal = pd.read_csv("dataframe_cbmal.csv", sep=",", encoding='UTF-8', index_col=0)
+    dataframe_cbmal = pd.read_csv("api/dataframe_cbmal.csv", sep=",", encoding='UTF-8', index_col=0)
 
     # Acessar site do CBMAL e copiar parte específica da página HTML.
     pagina = []
