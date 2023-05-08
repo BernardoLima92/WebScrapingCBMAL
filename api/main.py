@@ -1,3 +1,4 @@
+import flask
 from flask import Flask
 import pandas as pd
 from bs4 import BeautifulSoup as soup
@@ -12,14 +13,11 @@ colunas = ['Dia', 'Mês', 'Ano', 'Hora', 'Cidade', 'Ocorrência', 'Descrição',
 cbm_url = ['https://cbm.al.gov.br/paginas/ocorrencias/true']
 
 
-#df = pd.DataFrame(nova_linha, index=[0])
-
 @app.route("/")
 def get_read():
 
     # Criação do DataFrame Pandas que  recebe a base de dados do arquivo CSV.
-    #dataframe_cbmal = pd.read_csv("dataframe_cbmal.csv", sep=",", encoding='UTF-8', index_col=0)
-    dataframe_cbmal = pd.read_csv("api/dataframe_cbmal.csv", sep=",", encoding='UTF-8', index_col=0)
+    dataframe_cbmal = pd.read_csv("dataframe_cbmal.csv", sep=",", encoding='UTF-8', index_col=0)
 
     # Acessar site do CBMAL e copiar parte específica da página HTML.
     pagina = []
@@ -72,6 +70,7 @@ def get_read():
     sem_duplicados = dataframe_cbmal.drop_duplicates()
     sem_duplicados = sem_duplicados.reset_index()
     sem_duplicados = sem_duplicados.drop(columns='index')
+
     sem_duplicados.to_csv("dataframe_cbmal.csv")
 
     texto = f'O Tamnho atual do arquivo CSV: {len(sem_duplicados)}'
